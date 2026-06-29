@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect ,JsonResponse
 from accounts.models import *
 from django.contrib.auth.decorators import login_required
-from services.models import *
+from services.models import User, CustomerProfile, ProviderProfile ,service_request
 from datetime import datetime
 from django.shortcuts import get_object_or_404
 from django.utils import timezone

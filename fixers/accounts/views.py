@@ -37,16 +37,12 @@ def register(request):
         password = request.POST.get("password")
         confirmation = request.POST.get("confirmation")
         user_type=request.POST.get("user_type")
-        print(request.POST)
-        print(request.POST.get("user_type"))
         if password != confirmation:
             return render(request, "accounts/register.html", {
                 "message": "Passwords must match"
             })
         try:
             user = User.objects.create_user(username=username,email=email,password=password,user_type=user_type)
-            print("user created")
-            print(user)
             if user_type == "CUSTOMER": 
                 CustomerProfile.objects.create(user=user)
 
@@ -54,8 +50,6 @@ def register(request):
                 ProviderProfile.objects.create(user=user)
 
         except IntegrityError as e:
-             print("ERROR:", type(e))
-             print("ERROR MESSAGE:", e)
              return render(request, "accounts/register.html", {
                 "message": "Username already exists"
             })
