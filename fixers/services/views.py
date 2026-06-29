@@ -83,7 +83,7 @@ def provider(request):
             if request.POST.get("available") == "yes":
                  profile.is_active=True
             else:
-                 profile.is_active=True
+                 profile.is_active=False
             profile.save()
             return HttpResponseRedirect(reverse("services:index"))
         
