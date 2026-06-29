@@ -1,0 +1,10 @@
+{% extends "accounts/layout.html"%}
+{% block title%}
+index
+{% endblock %}
+{% block body%}
+<div id="box">
+      <a href="{% url 'accounts:login_view' %}"><button>login</button></a>
+   <a href="{% url 'accounts:register' %}"><button>register</button></a>
+</div>
+{% endblock%}

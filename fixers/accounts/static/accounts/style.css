@@ -1,0 +1,6 @@
+#box{
+    align-self: center;
+    left: 50%;
+    top: 50%;
+    border: 2px solid black;
+}

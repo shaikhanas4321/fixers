@@ -1,0 +1,20 @@
+{%  extends "services/layout.html" %}
+{% block title %}
+jobs
+{% endblock %}
+{% block body %}
+   {% if jobs %}
+    {% for job in jobs %}
+        <ul>
+            <li>CUSTOMER :{{job.customer}}</li>
+            <li id="status">job status :{{job.status}}</li>
+            <li>uploaded at : day ( {{job.created_at.date}} )  time :( {{job.created_at.time}} )</li>
+            <button data-id="{{job.id}}" data-status="accepted" class="status-btn">accept</button>
+           
+            <button  data-id="{{job.id}}" data-status="rejected" class="status-btn">reject</button>
+
+             
+        </ul>
+     {% endfor %}
+    {% endif %} 
+{% endblock %}

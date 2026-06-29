@@ -1,0 +1,22 @@
+{%  extends "services/layout.html" %}
+{% block title %}
+listing
+{% endblock %}
+{% block body %}
+
+{% for provider in providers %}
+<ul>
+     <li>name: {{provider.user.username}} </li>
+     <li>skill :{{provider.skills}}</li>
+     <li>years experience :{{provider.experience_years}}</li>
+     <li>phone no :{{provider.phone}}</li>
+     <li>bio :{{provider.bio}}</li>
+     <form action="{% url 'services:calling' provider.user.username  %}" method="post">     
+          {% csrf_token %}
+     <button type="submit"><b>call {{provider.user.username}}</b></button>
+     </form>
+</ul>
+{% endfor %}
+
+
+{% endblock %}

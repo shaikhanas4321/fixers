@@ -1,0 +1,60 @@
+{%  extends "services/layout.html" %}
+{% block title %}
+index
+{% endblock %}
+{% block body %}
+<h1>{{user.username}}</h1>
+<h2>{{user.user_type}}</h2>
+{% if user.user_type == 'CUSTOMER' %}
+<form action="{% url 'services:completion' %}" method="post">
+    {% csrf_token %}
+    {% if not profile.phone %}
+    <input type="number" id="phone" placeholder="phone-number" name="phone">
+    <input name="house_number" placeholder="house_number">
+    {% endif %}
+    {% if not profile.address %}
+    <input name="street" placeholder="street">
+    <input name="city" placeholder="city">
+    <input type="submit">
+    {% endif %}
+</form>
+{% endif %}
+{% if user.user_type == 'PROVIDER' %}
+<form action="{% url 'services:provider' %}" method="POST">
+{% csrf_token %}
+          <label>Skill:</label>
+           <select name="skill">
+               {% for skill in skills %}
+                 <option value="{{ skill.id }}">
+                    {{ skill.name }}
+                    </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Experience (Years):</label>
+    <input type="number" name="experience_years">
+
+    <br><br>
+
+    <label>Bio:</label>
+    <textarea name="bio"></textarea>
+       <br><br>
+    <label >phone:</label>
+    <input type="number" name="phone">
+    <br><br>
+         <label >available :</label>
+           <select name="available" id="#">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+           </select>
+
+    <button type="submit">
+        Save Profile
+    </button>
+</form>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "accounts/layout.html"%}
+{% block title%}
+login
+{% endblock %}
+{% block body%}
+{% if message %}
+<div>
+    {{message}}
+</div>
+{% endif %}
+<form action="{% url 'accounts:login_view' %}" method="post">
+    {% csrf_token %}
+   username: <input type="text" name="username" id="username" autofocus>
+   <br>
+   <br>
+   password:<input type="password" name="password" id="password" autofocus>
+   <br>
+   <br>
+    <input type="submit">
+
+</form>
+{% endblock%}
